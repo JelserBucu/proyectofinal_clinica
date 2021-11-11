@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Comprension_Lectora.Models.SOLICITUD_CISTAS>
+
+@{
+    ViewBag.Title = "Citas";
+}
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7"><h1 style="font-weight: bold;"><i class="nav-icon fas fa-calendar-plus"></i> Citas</h1></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: right;">
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body" id="pnlDetalle">
+                <div id="pnlSolicitudes">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: right;">
+                            @Html.ActionLink("Agendar Cita", "Create", "SOLICITUD_CISTAS", new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-bordered table-striped" id="tblSolicitud">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Paciente
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Hora
+                                </th>
+                                <th>
+                                    Sintomas
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cita_Paciente)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Fecha_Cita)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Hora_Cita)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Tipo_Consulta)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar ✏️", "Edit", new { id = item.CodigoCitas }) |
+                                        @Html.ActionLink("Detalle 📅", "Details", new { id = item.CodigoCitas }) |
+                                        @Html.ActionLink("Eliminar ❌", "Delete", new { id = item.CodigoCitas })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

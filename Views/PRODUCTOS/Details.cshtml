@@ -1,0 +1,144 @@
+﻿@model Comprension_Lectora.Models.PRODUCTOS
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7"><h1 style="font-weight: bold;"><i class="nav-icon fas fa-pills"></i> Detalles del Producto</h1></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: right;">
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body" id="pnlDetalle">
+                <div id="pnlSolicitudes">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <br />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Código Producto</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.CodigoProductosVenta, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
+                                    @Html.ValidationMessageFor(model => model.CodigoProductosVenta, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Nombre Producto</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Nombre_Producto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Nombre_Producto, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Efectos</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Efectos, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Efectos, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Fecha Vencimiento</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.FechaVencimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.FechaVencimiento, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Presentación</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Presentacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Presentacion, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Unidades</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Unidades, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Unidades, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Precio de Compra</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.PrecioDeCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.PrecioDeCompra, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Precio de Venta</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.PrecioDeVenta, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.PrecioDeVenta, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2"><strong>Existencia</strong></div>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8" style="text-align: right;">
+                                @Html.ActionLink("Regresar", "Index", "PRODUCTOS", new { @class = "btn btn-success" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

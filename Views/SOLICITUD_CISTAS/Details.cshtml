@@ -1,0 +1,89 @@
+﻿@model Comprension_Lectora.Models.SOLICITUD_CISTAS
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7"><h1 style="font-weight: bold;"><i class="nav-icon fas fa-calendar-plus"></i> Información de Cita</h1></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: right;">
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body" id="pnlDetalle">
+                <div id="pnlSolicitudes">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <br />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Paciente</strong></div>
+                                <div class="col-md-8">
+                                    @Html.HiddenFor(model => model.CodigoCitas)
+                                    @Html.EditorFor(model => model.Cita_Paciente, new { htmlAttributes = new { @class = "form-control", @readonly= "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Cita_Paciente, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Fecha Cita</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Fecha_Cita, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Fecha_Cita, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Hora</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Hora_Cita, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Hora_Cita, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Tipo Consulta</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Tipo_Consulta, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Tipo_Consulta, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8" style="text-align: right;">
+                                    @Html.ActionLink("Regresar", "Index", "SOLICITUD_CISTAS", new { @class = "btn btn-success" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

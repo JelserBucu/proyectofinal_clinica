@@ -1,0 +1,81 @@
+﻿@model Comprension_Lectora.Models.HABITACION
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7"><h1 style="font-weight: bold;"><i class="nav-icon fas fa-procedures"></i> Editar Habitación</h1></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: right;">
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body" id="pnlDetalle">
+                <div id="pnlSolicitudes">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <br />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>No. de Habitación</strong></div>
+                                <div class="col-md-8">
+                                    @Html.HiddenFor(model => model.CodigoHabitacion)
+                                    @Html.EditorFor(model => model.Habitacion1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Habitacion1, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Observaciones</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Estado</strong></div>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Disponible", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Disponible, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8" style="text-align: right;">
+                                    @Html.ActionLink("Regresar", "Index", "HABITACION", new { @class = "btn btn-success" })
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+

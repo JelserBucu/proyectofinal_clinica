@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Comprension_Lectora.Models.PRODUCTOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7"><h1 style="font-weight: bold;"><i class="nav-icon fas fa-pills"></i> Productos</h1></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: right;">
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body" id="pnlDetalle">
+                <div id="pnlSolicitudes">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: right;">
+                            @Html.ActionLink("Agregar Producto", "Create", "PRODUCTOS", new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-bordered table-striped" id="tblSolicitud">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Producto
+                                </th>
+                                <th>
+                                    Presentación
+                                </th>
+                                <th>
+                                    Precio de Venta
+                                </th>
+                                <th>
+                                    Existencia
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nombre_Producto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Presentacion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecioDeVenta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Existencia)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar ✏️", "Edit", new { id = item.CodigoProductosVenta }) |
+                                        @Html.ActionLink("Detalle 📅", "Details", new { id = item.CodigoProductosVenta }) |
+                                        @Html.ActionLink("Eliminar ❌", "Delete", new { id = item.CodigoProductosVenta })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

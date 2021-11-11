@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+   
+}
+
+<div  alig class="col-auto bd-danger p5 text-center";">
+    <h3>CLINICA MEDICA</h3>
+    <img src="~/fonts/ClínicaMedica.jpg" alt="image" height="150" width="135">
+
+</div>
+<table class="table" style="background-color:gold">
+    <tr style="background-color:lightgoldenrodyellow; font-size:larger">
+        <th>
+            @Html.ActionLink("Pacientes🤕", "Index", "PACIENTEs")
+        </th>
+
+        <th>
+            @Html.ActionLink("Historial Clinico Paciente📊", "Index", "HISTORIAL_CLINICO")
+        </th>
+
+        <th>
+            @Html.ActionLink("Habitaciones🛌🏾", "Index", "HABITACIONs")
+        </th>
+
+        <th>
+            @Html.ActionLink("Empleados👨‍⚕️", "Index", "PERSONAL_ADMISTRATIVO")
+        </th>
+                
+        <th>
+            @Html.ActionLink("Usuarios👨‍💻", "Index", "USERs")
+        </th>
+        <th>
+            @Html.ActionLink("Solicitud de Citas📤", "Index", "SOLICITUD_CISTAS")
+        </th>
+
+        <th>
+            @Html.ActionLink("Producto💊", "Index", "PRODUCTOS")
+        </th>
+
+
+    </tr>
+</table>
+
+

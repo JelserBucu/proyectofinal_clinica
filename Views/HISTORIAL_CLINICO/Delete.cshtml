@@ -1,0 +1,91 @@
+﻿@model Comprension_Lectora.Models.HISTORIAL_CLINICO
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7"><h1 style="font-weight: bold;"><i class="nav-icon fas fa-book-medical"></i> Eliminar Historial Clínico</h1></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: right;">
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body" id="pnlDetalle">
+                <div id="pnlSolicitudes">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <h3><strong>¿Esta seguro de borrar este historial?</strong></h3>
+                        <div class="form-horizontal">
+                            <br />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Nombre del Paciente</strong></div>
+                                <div class="col-md-8">
+                                    @Html.HiddenFor(model => model.CodigoHistorial)
+                                    @Html.EditorFor(model => model.PACIENTE1.Nombre_Completo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Paciente, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><strong>Examenes Realizados</strong></div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Examentes_Realizados, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Examentes_Realizados, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2"><strong>Diagnóstico</strong></div>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.DiagnosticoPasiente, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.DiagnosticoPasiente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2"><strong>Fecha</strong></div>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                                <div class="col-md-1"></div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8" style="text-align: right;">
+                                @Html.ActionLink("Regresar", "Index", "HISTORIAL_CLINICO", new { @class = "btn btn-success" })
+                                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

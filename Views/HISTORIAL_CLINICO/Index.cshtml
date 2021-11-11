@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Comprension_Lectora.Models.HISTORIAL_CLINICO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7"><h1 style="font-weight: bold;"><i class="nav-icon fas fa-book-medical"></i> Historial Clínico</h1></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: right;">
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body" id="pnlDetalle">
+                <div id="pnlSolicitudes">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: right;">
+                            @Html.ActionLink("Agregar Historial", "Create", "HISTORIAL_CLINICO", new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-bordered table-striped" id="tblSolicitud">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Examenes Realizados
+                                </th>
+                                <th>
+                                    Diagnóstico
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Paciente
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Examentes_Realizados)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiagnosticoPasiente)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Fecha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PACIENTE1.Nombre_Completo)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar ✏️", "Edit", new { id = item.CodigoHistorial }) |
+                                        @Html.ActionLink("Detalle 📅", "Details", new { id = item.CodigoHistorial }) |
+                                        @Html.ActionLink("Eliminar ❌", "Delete", new { id = item.CodigoHistorial })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

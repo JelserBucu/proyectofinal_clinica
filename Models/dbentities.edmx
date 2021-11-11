@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DESARROLLO_WEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CSTATE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="DISPONIBLES">
+          <Key>
+            <PropertyRef Name="CodigoEstado" />
+          </Key>
+          <Property Name="CodigoEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ENFERMEDAD">
+          <Key>
+            <PropertyRef Name="CodigoEnfermedad" />
+          </Key>
+          <Property Name="CodigoEnfermedad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Enfermedad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HABITACION">
+          <Key>
+            <PropertyRef Name="CodigoHabitacion" />
+          </Key>
+          <Property Name="CodigoHabitacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Habitacion" Type="varchar" MaxLength="2" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="70" />
+          <Property Name="Disponible" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HISTORIAL_CLINICO">
+          <Key>
+            <PropertyRef Name="CodigoHistorial" />
+          </Key>
+          <Property Name="CodigoHistorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Paciente" Type="int" />
+          <Property Name="Examentes_Realizados" Type="varchar(max)" />
+          <Property Name="DiagnosticoPasiente" Type="varchar(max)" />
+          <Property Name="Fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="PACIENTE">
+          <Key>
+            <PropertyRef Name="CodigoPasiente" />
+          </Key>
+          <Property Name="CodigoPasiente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Completo" Type="varchar" MaxLength="30" />
+          <Property Name="Sexo" Type="int" />
+          <Property Name="Telefono" Type="varchar" MaxLength="8" />
+          <Property Name="Enfermedad" Type="int" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="70" />
+          <Property Name="Habitacion" Type="int" />
+        </EntityType>
+        <EntityType Name="PERSONAL_ADMISTRATIVO">
+          <Key>
+            <PropertyRef Name="CodigoEmpleado" />
+          </Key>
+          <Property Name="CodigoEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="Apellido" Type="varchar" MaxLength="30" />
+          <Property Name="Direccion" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Telefono" Type="varchar" MaxLength="8" />
+          <Property Name="Puesto" Type="int" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="CodigoProductosVenta" />
+          </Key>
+          <Property Name="CodigoProductosVenta" Type="int" Nullable="false" />
+          <Property Name="Nombre_Producto" Type="varchar" MaxLength="50" />
+          <Property Name="Efectos" Type="varchar" MaxLength="50" />
+          <Property Name="FechaVencimiento" Type="date" />
+          <Property Name="Presentacion" Type="varchar" MaxLength="50" />
+          <Property Name="Unidades" Type="int" />
+          <Property Name="PrecioDeCompra" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PrecioDeVenta" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Total" Type="decimal" Precision="29" Scale="0" StoreGeneratedPattern="Computed" />
+          <Property Name="Existencia" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PUESTO">
+          <Key>
+            <PropertyRef Name="CodigoPuesto" />
+          </Key>
+          <Property Name="CodigoPuesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Puesto" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="SEXO">
+          <Key>
+            <PropertyRef Name="CodigoSexo" />
+          </Key>
+          <Property Name="CodigoSexo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_CISTAS">
+          <Key>
+            <PropertyRef Name="CodigoCitas" />
+          </Key>
+          <Property Name="CodigoCitas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cita_Paciente" Type="varchar" MaxLength="40" />
+          <Property Name="Fecha_Cita" Type="date" />
+          <Property Name="Hora_Cita" Type="time" Precision="5" />
+          <Property Name="Tipo_Consulta" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="40" />
+          <Property Name="Passwords" Type="varchar" MaxLength="40" />
+          <Property Name="IdEmpleado" Type="int" />
+          <Property Name="IdEstado" Type="int" />
+        </EntityType>
+        <Association Name="FK_HABITACION_DISPONIBLES">
+          <End Role="DISPONIBLES" Type="Self.DISPONIBLES" Multiplicity="1" />
+          <End Role="HABITACION" Type="Self.HABITACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISPONIBLES">
+              <PropertyRef Name="CodigoEstado" />
+            </Principal>
+            <Dependent Role="HABITACION">
+              <PropertyRef Name="Disponible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORIAL_CLINICO_PACIENTE">
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
+          <End Role="HISTORIAL_CLINICO" Type="Self.HISTORIAL_CLINICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="CodigoPasiente" />
+            </Principal>
+            <Dependent Role="HISTORIAL_CLINICO">
+              <PropertyRef Name="Paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_ENFERMEDAD">
+          <End Role="ENFERMEDAD" Type="Self.ENFERMEDAD" Multiplicity="0..1" />
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENFERMEDAD">
+              <PropertyRef Name="CodigoEnfermedad" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="Enfermedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_HABITACION">
+          <End Role="HABITACION" Type="Self.HABITACION" Multiplicity="0..1" />
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HABITACION">
+              <PropertyRef Name="CodigoHabitacion" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="Habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_SEXO">
+          <End Role="SEXO" Type="Self.SEXO" Multiplicity="0..1" />
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEXO">
+              <PropertyRef Name="CodigoSexo" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERSONAL_ADMISTRATIVO_PUESTO">
+          <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="0..1" />
+          <End Role="PERSONAL_ADMISTRATIVO" Type="Self.PERSONAL_ADMISTRATIVO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUESTO">
+              <PropertyRef Name="CodigoPuesto" />
+            </Principal>
+            <Dependent Role="PERSONAL_ADMISTRATIVO">
+              <PropertyRef Name="Puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_CSTATE">
+          <End Role="CSTATE" Type="Self.CSTATE" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSTATE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_PERSONAL_ADMISTRATIVO">
+          <End Role="PERSONAL_ADMISTRATIVO" Type="Self.PERSONAL_ADMISTRATIVO" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONAL_ADMISTRATIVO">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DESARROLLO_WEBModelStoreContainer">
+          <EntitySet Name="CSTATE" EntityType="Self.CSTATE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISPONIBLES" EntityType="Self.DISPONIBLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENFERMEDAD" EntityType="Self.ENFERMEDAD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HABITACION" EntityType="Self.HABITACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORIAL_CLINICO" EntityType="Self.HISTORIAL_CLINICO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTE" EntityType="Self.PACIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONAL_ADMISTRATIVO" EntityType="Self.PERSONAL_ADMISTRATIVO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PUESTO" EntityType="Self.PUESTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOLICITUD_CISTAS" EntityType="Self.SOLICITUD_CISTAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HABITACION_DISPONIBLES" Association="Self.FK_HABITACION_DISPONIBLES">
+            <End Role="DISPONIBLES" EntitySet="DISPONIBLES" />
+            <End Role="HABITACION" EntitySet="HABITACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORIAL_CLINICO_PACIENTE" Association="Self.FK_HISTORIAL_CLINICO_PACIENTE">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="HISTORIAL_CLINICO" EntitySet="HISTORIAL_CLINICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_ENFERMEDAD" Association="Self.FK_PACIENTE_ENFERMEDAD">
+            <End Role="ENFERMEDAD" EntitySet="ENFERMEDAD" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_HABITACION" Association="Self.FK_PACIENTE_HABITACION">
+            <End Role="HABITACION" EntitySet="HABITACION" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_SEXO" Association="Self.FK_PACIENTE_SEXO">
+            <End Role="SEXO" EntitySet="SEXO" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERSONAL_ADMISTRATIVO_PUESTO" Association="Self.FK_PERSONAL_ADMISTRATIVO_PUESTO">
+            <End Role="PUESTO" EntitySet="PUESTO" />
+            <End Role="PERSONAL_ADMISTRATIVO" EntitySet="PERSONAL_ADMISTRATIVO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_CSTATE" Association="Self.FK_USER_CSTATE">
+            <End Role="CSTATE" EntitySet="CSTATE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_PERSONAL_ADMISTRATIVO" Association="Self.FK_USER_PERSONAL_ADMISTRATIVO">
+            <End Role="PERSONAL_ADMISTRATIVO" EntitySet="PERSONAL_ADMISTRATIVO" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DESARROLLO_WEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CSTATE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_USER_CSTATE" FromRole="CSTATE" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="DISPONIBLES">
+          <Key>
+            <PropertyRef Name="CodigoEstado" />
+          </Key>
+          <Property Name="CodigoEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HABITACION" Relationship="Self.FK_HABITACION_DISPONIBLES" FromRole="DISPONIBLES" ToRole="HABITACION" />
+        </EntityType>
+        <EntityType Name="ENFERMEDAD">
+          <Key>
+            <PropertyRef Name="CodigoEnfermedad" />
+          </Key>
+          <Property Name="CodigoEnfermedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Enfermedad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PACIENTE" Relationship="Self.FK_PACIENTE_ENFERMEDAD" FromRole="ENFERMEDAD" ToRole="PACIENTE" />
+        </EntityType>
+        <EntityType Name="HABITACION">
+          <Key>
+            <PropertyRef Name="CodigoHabitacion" />
+          </Key>
+          <Property Name="CodigoHabitacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Habitacion1" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Disponible" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DISPONIBLES" Relationship="Self.FK_HABITACION_DISPONIBLES" FromRole="HABITACION" ToRole="DISPONIBLES" />
+          <NavigationProperty Name="PACIENTE" Relationship="Self.FK_PACIENTE_HABITACION" FromRole="HABITACION" ToRole="PACIENTE" />
+        </EntityType>
+        <EntityType Name="HISTORIAL_CLINICO">
+          <Key>
+            <PropertyRef Name="CodigoHistorial" />
+          </Key>
+          <Property Name="CodigoHistorial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Paciente" Type="Int32" />
+          <Property Name="Examentes_Realizados" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DiagnosticoPasiente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PACIENTE1" Relationship="Self.FK_HISTORIAL_CLINICO_PACIENTE" FromRole="HISTORIAL_CLINICO" ToRole="PACIENTE" />
+        </EntityType>
+        <EntityType Name="PACIENTE">
+          <Key>
+            <PropertyRef Name="CodigoPasiente" />
+          </Key>
+          <Property Name="CodigoPasiente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Completo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="Int32" />
+          <Property Name="Telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Enfermedad" Type="Int32" />
+          <Property Name="Observaciones" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Habitacion" Type="Int32" />
+          <NavigationProperty Name="ENFERMEDAD1" Relationship="Self.FK_PACIENTE_ENFERMEDAD" FromRole="PACIENTE" ToRole="ENFERMEDAD" />
+          <NavigationProperty Name="HABITACION1" Relationship="Self.FK_PACIENTE_HABITACION" FromRole="PACIENTE" ToRole="HABITACION" />
+          <NavigationProperty Name="HISTORIAL_CLINICO" Relationship="Self.FK_HISTORIAL_CLINICO_PACIENTE" FromRole="PACIENTE" ToRole="HISTORIAL_CLINICO" />
+          <NavigationProperty Name="SEXO1" Relationship="Self.FK_PACIENTE_SEXO" FromRole="PACIENTE" ToRole="SEXO" />
+        </EntityType>
+        <EntityType Name="PERSONAL_ADMISTRATIVO">
+          <Key>
+            <PropertyRef Name="CodigoEmpleado" />
+          </Key>
+          <Property Name="CodigoEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Puesto" Type="Int32" />
+          <NavigationProperty Name="PUESTO1" Relationship="Self.FK_PERSONAL_ADMISTRATIVO_PUESTO" FromRole="PERSONAL_ADMISTRATIVO" ToRole="PUESTO" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_USER_PERSONAL_ADMISTRATIVO" FromRole="PERSONAL_ADMISTRATIVO" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="CodigoProductosVenta" />
+          </Key>
+          <Property Name="CodigoProductosVenta" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_Producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Efectos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="0" />
+          <Property Name="Presentacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Unidades" Type="Int32" />
+          <Property Name="PrecioDeCompra" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PrecioDeVenta" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Total" Type="Decimal" Precision="29" Scale="0" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Existencia" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PUESTO">
+          <Key>
+            <PropertyRef Name="CodigoPuesto" />
+          </Key>
+          <Property Name="CodigoPuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERSONAL_ADMISTRATIVO" Relationship="Self.FK_PERSONAL_ADMISTRATIVO_PUESTO" FromRole="PUESTO" ToRole="PERSONAL_ADMISTRATIVO" />
+        </EntityType>
+        <EntityType Name="SEXO">
+          <Key>
+            <PropertyRef Name="CodigoSexo" />
+          </Key>
+          <Property Name="CodigoSexo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sexo1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PACIENTE" Relationship="Self.FK_PACIENTE_SEXO" FromRole="SEXO" ToRole="PACIENTE" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_CISTAS">
+          <Key>
+            <PropertyRef Name="CodigoCitas" />
+          </Key>
+          <Property Name="CodigoCitas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cita_Paciente" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Cita" Type="DateTime" Precision="0" />
+          <Property Name="Hora_Cita" Type="Time" Precision="5" />
+          <Property Name="Tipo_Consulta" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Passwords" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="IdEmpleado" Type="Int32" />
+          <Property Name="IdEstado" Type="Int32" />
+          <NavigationProperty Name="CSTATE" Relationship="Self.FK_USER_CSTATE" FromRole="USER" ToRole="CSTATE" />
+          <NavigationProperty Name="PERSONAL_ADMISTRATIVO" Relationship="Self.FK_USER_PERSONAL_ADMISTRATIVO" FromRole="USER" ToRole="PERSONAL_ADMISTRATIVO" />
+        </EntityType>
+        <Association Name="FK_USER_CSTATE">
+          <End Role="CSTATE" Type="Self.CSTATE" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSTATE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HABITACION_DISPONIBLES">
+          <End Role="DISPONIBLES" Type="Self.DISPONIBLES" Multiplicity="1" />
+          <End Role="HABITACION" Type="Self.HABITACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISPONIBLES">
+              <PropertyRef Name="CodigoEstado" />
+            </Principal>
+            <Dependent Role="HABITACION">
+              <PropertyRef Name="Disponible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_ENFERMEDAD">
+          <End Role="ENFERMEDAD" Type="Self.ENFERMEDAD" Multiplicity="0..1" />
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENFERMEDAD">
+              <PropertyRef Name="CodigoEnfermedad" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="Enfermedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_HABITACION">
+          <End Role="HABITACION" Type="Self.HABITACION" Multiplicity="0..1" />
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HABITACION">
+              <PropertyRef Name="CodigoHabitacion" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="Habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORIAL_CLINICO_PACIENTE">
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
+          <End Role="HISTORIAL_CLINICO" Type="Self.HISTORIAL_CLINICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="CodigoPasiente" />
+            </Principal>
+            <Dependent Role="HISTORIAL_CLINICO">
+              <PropertyRef Name="Paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_SEXO">
+          <End Role="SEXO" Type="Self.SEXO" Multiplicity="0..1" />
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEXO">
+              <PropertyRef Name="CodigoSexo" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERSONAL_ADMISTRATIVO_PUESTO">
+          <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="0..1" />
+          <End Role="PERSONAL_ADMISTRATIVO" Type="Self.PERSONAL_ADMISTRATIVO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUESTO">
+              <PropertyRef Name="CodigoPuesto" />
+            </Principal>
+            <Dependent Role="PERSONAL_ADMISTRATIVO">
+              <PropertyRef Name="Puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_PERSONAL_ADMISTRATIVO">
+          <End Role="PERSONAL_ADMISTRATIVO" Type="Self.PERSONAL_ADMISTRATIVO" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONAL_ADMISTRATIVO">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DESARROLLO_WEBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CSTATE" EntityType="Self.CSTATE" />
+          <EntitySet Name="DISPONIBLES" EntityType="Self.DISPONIBLES" />
+          <EntitySet Name="ENFERMEDAD" EntityType="Self.ENFERMEDAD" />
+          <EntitySet Name="HABITACION" EntityType="Self.HABITACION" />
+          <EntitySet Name="HISTORIAL_CLINICO" EntityType="Self.HISTORIAL_CLINICO" />
+          <EntitySet Name="PACIENTE" EntityType="Self.PACIENTE" />
+          <EntitySet Name="PERSONAL_ADMISTRATIVO" EntityType="Self.PERSONAL_ADMISTRATIVO" />
+          <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" />
+          <EntitySet Name="PUESTO" EntityType="Self.PUESTO" />
+          <EntitySet Name="SEXO" EntityType="Self.SEXO" />
+          <EntitySet Name="SOLICITUD_CISTAS" EntityType="Self.SOLICITUD_CISTAS" />
+          <EntitySet Name="USER" EntityType="Self.USER" />
+          <AssociationSet Name="FK_USER_CSTATE" Association="Self.FK_USER_CSTATE">
+            <End Role="CSTATE" EntitySet="CSTATE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HABITACION_DISPONIBLES" Association="Self.FK_HABITACION_DISPONIBLES">
+            <End Role="DISPONIBLES" EntitySet="DISPONIBLES" />
+            <End Role="HABITACION" EntitySet="HABITACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_ENFERMEDAD" Association="Self.FK_PACIENTE_ENFERMEDAD">
+            <End Role="ENFERMEDAD" EntitySet="ENFERMEDAD" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_HABITACION" Association="Self.FK_PACIENTE_HABITACION">
+            <End Role="HABITACION" EntitySet="HABITACION" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORIAL_CLINICO_PACIENTE" Association="Self.FK_HISTORIAL_CLINICO_PACIENTE">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="HISTORIAL_CLINICO" EntitySet="HISTORIAL_CLINICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_SEXO" Association="Self.FK_PACIENTE_SEXO">
+            <End Role="SEXO" EntitySet="SEXO" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERSONAL_ADMISTRATIVO_PUESTO" Association="Self.FK_PERSONAL_ADMISTRATIVO_PUESTO">
+            <End Role="PUESTO" EntitySet="PUESTO" />
+            <End Role="PERSONAL_ADMISTRATIVO" EntitySet="PERSONAL_ADMISTRATIVO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_PERSONAL_ADMISTRATIVO" Association="Self.FK_USER_PERSONAL_ADMISTRATIVO">
+            <End Role="PERSONAL_ADMISTRATIVO" EntitySet="PERSONAL_ADMISTRATIVO" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DESARROLLO_WEBModelStoreContainer" CdmEntityContainer="DESARROLLO_WEBEntities">
+          <EntitySetMapping Name="CSTATE">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.CSTATE">
+              <MappingFragment StoreEntitySet="CSTATE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISPONIBLES">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.DISPONIBLES">
+              <MappingFragment StoreEntitySet="DISPONIBLES">
+                <ScalarProperty Name="CodigoEstado" ColumnName="CodigoEstado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENFERMEDAD">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.ENFERMEDAD">
+              <MappingFragment StoreEntitySet="ENFERMEDAD">
+                <ScalarProperty Name="CodigoEnfermedad" ColumnName="CodigoEnfermedad" />
+                <ScalarProperty Name="Nombre_Enfermedad" ColumnName="Nombre_Enfermedad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HABITACION">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.HABITACION">
+              <MappingFragment StoreEntitySet="HABITACION">
+                <ScalarProperty Name="CodigoHabitacion" ColumnName="CodigoHabitacion" />
+                <ScalarProperty Name="Habitacion1" ColumnName="Habitacion" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORIAL_CLINICO">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.HISTORIAL_CLINICO">
+              <MappingFragment StoreEntitySet="HISTORIAL_CLINICO">
+                <ScalarProperty Name="CodigoHistorial" ColumnName="CodigoHistorial" />
+                <ScalarProperty Name="Paciente" ColumnName="Paciente" />
+                <ScalarProperty Name="Examentes_Realizados" ColumnName="Examentes_Realizados" />
+                <ScalarProperty Name="DiagnosticoPasiente" ColumnName="DiagnosticoPasiente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTE">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.PACIENTE">
+              <MappingFragment StoreEntitySet="PACIENTE">
+                <ScalarProperty Name="CodigoPasiente" ColumnName="CodigoPasiente" />
+                <ScalarProperty Name="Nombre_Completo" ColumnName="Nombre_Completo" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Enfermedad" ColumnName="Enfermedad" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Habitacion" ColumnName="Habitacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSONAL_ADMISTRATIVO">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.PERSONAL_ADMISTRATIVO">
+              <MappingFragment StoreEntitySet="PERSONAL_ADMISTRATIVO">
+                <ScalarProperty Name="CodigoEmpleado" ColumnName="CodigoEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOS">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.PRODUCTOS">
+              <MappingFragment StoreEntitySet="PRODUCTOS">
+                <ScalarProperty Name="CodigoProductosVenta" ColumnName="CodigoProductosVenta" />
+                <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
+                <ScalarProperty Name="Efectos" ColumnName="Efectos" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="Unidades" ColumnName="Unidades" />
+                <ScalarProperty Name="PrecioDeCompra" ColumnName="PrecioDeCompra" />
+                <ScalarProperty Name="PrecioDeVenta" ColumnName="PrecioDeVenta" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUESTO">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.PUESTO">
+              <MappingFragment StoreEntitySet="PUESTO">
+                <ScalarProperty Name="CodigoPuesto" ColumnName="CodigoPuesto" />
+                <ScalarProperty Name="Nombre_Puesto" ColumnName="Nombre_Puesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEXO">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.SEXO">
+              <MappingFragment StoreEntitySet="SEXO">
+                <ScalarProperty Name="CodigoSexo" ColumnName="CodigoSexo" />
+                <ScalarProperty Name="Sexo1" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITUD_CISTAS">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.SOLICITUD_CISTAS">
+              <MappingFragment StoreEntitySet="SOLICITUD_CISTAS">
+                <ScalarProperty Name="CodigoCitas" ColumnName="CodigoCitas" />
+                <ScalarProperty Name="Cita_Paciente" ColumnName="Cita_Paciente" />
+                <ScalarProperty Name="Fecha_Cita" ColumnName="Fecha_Cita" />
+                <ScalarProperty Name="Hora_Cita" ColumnName="Hora_Cita" />
+                <ScalarProperty Name="Tipo_Consulta" ColumnName="Tipo_Consulta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="DESARROLLO_WEBModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
